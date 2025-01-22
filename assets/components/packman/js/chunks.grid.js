@@ -3,7 +3,7 @@ TP.grid.Chunks = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'tp-grid-chunks'
-        ,url: TP.config.connector_url
+        ,url: MODx.config.connector_url
         ,baseParams: {
             action: 'chunk/getList'
         }
@@ -38,7 +38,7 @@ Ext.extend(TP.grid.Chunks,TP.grid.LocalGrid,{
     }
     ,addChunk: function(btn,e) {
         var r = {};
-        
+
         if (!this.windows.addChunk) {
             this.windows.addChunk = MODx.load({
                 xtype: 'tp-window-chunk-add'
@@ -57,7 +57,6 @@ Ext.extend(TP.grid.Chunks,TP.grid.LocalGrid,{
 });
 Ext.reg('tp-grid-chunks',TP.grid.Chunks);
 
-
 TP.window.AddChunk = function(config) {
     config = config || {};
     this.ident = config.ident || 'tpach'+Ext.id();
@@ -74,6 +73,7 @@ TP.window.AddChunk = function(config) {
             ,id: 'tp-'+this.ident+'-chunk'
             ,allowBlank: false
             ,pageSize: 20
+            ,anchor: '100%'
         }]
     });
     TP.window.AddChunk.superclass.constructor.call(this,config);
@@ -108,13 +108,13 @@ TP.combo.Chunk = function(config) {
         ,valueField: 'id'
         ,fields: ['id','name']
         ,forceSelection: true
-        ,typeAhead: false
-        ,editable: false
+        ,typeAhead: true
+        ,editable: true
         ,allowBlank: false
         ,listWidth: 300
-        ,url: MODx.config.connector_url ? MODx.config.connector_url : MODx.config.connectors_url+'element/chunk.php'
+        ,url: MODx.config.connector_url
         ,baseParams: {
-            action: MODx.config.connector_url ? 'element/chunk/getList' : 'getList'
+            action: 'PackMan\\Processors\\Element\\Chunk\\GetList'
         }
     });
     TP.combo.Chunk.superclass.constructor.call(this,config);

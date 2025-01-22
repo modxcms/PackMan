@@ -9,13 +9,11 @@ Ext.reg('tp',TP);
 
 var TP = new TP();
 
-
-
- TP.grid.LocalGrid = function(config) {
-     config = config || {};
-     TP.grid.LocalGrid.superclass.constructor.call(this,config);
- };
- Ext.extend(TP.grid.LocalGrid,MODx.grid.LocalGrid,{
+TP.grid.LocalGrid = function(config) {
+    config = config || {};
+    TP.grid.LocalGrid.superclass.constructor.call(this,config);
+};
+Ext.extend(TP.grid.LocalGrid,MODx.grid.LocalGrid,{
     getData: function() {
         var s = this.getStore();
         var ct = s.getCount();
@@ -25,12 +23,12 @@ var TP = new TP();
             r = s.getAt(j).data;
             r.menu = null;
             if (this.config.encodeAssoc) {
-               rs[r[this.config.encodeByPk || 'id']] = r;
+                rs[r[this.config.encodeByPk || 'id']] = r;
             } else {
-               rs.push(r);
+                rs.push(r);
             }
         }
 
         return rs;
     }
- });
+});

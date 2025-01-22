@@ -3,7 +3,7 @@ TP.grid.TVs = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'tp-grid-tvs'
-        ,url: TP.config.connector_url
+        ,url: MODx.config.connector_url
         ,baseParams: {
             action: 'tv/getList'
         }
@@ -28,7 +28,7 @@ TP.grid.TVs = function(config) {
 Ext.extend(TP.grid.TVs,TP.grid.LocalGrid,{
     addTV: function(btn,e) {
         var r = {};
-        
+
         if (!this.windows.addTV) {
             this.windows.addTV = MODx.load({
                 xtype: 'tp-window-tv-add'

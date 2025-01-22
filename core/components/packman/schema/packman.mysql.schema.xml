@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="PackMan\Model\" baseClass="xPDO\Om\xPDOObject" platform="mysql" defaultEngine="InnoDB" version="3.0">
+    <object class="pacProfile" table="packman_profile" extends="xPDO\Om\xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" index="index" />
+        <field key="description" dbtype="text" phptype="string" null="false" default="" />
+        <field key="data" dbtype="text" phptype="json" null="false" default="{}" />
+
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="191" collation="A" null="false" />
+        </index>
+    </object>
+</model>

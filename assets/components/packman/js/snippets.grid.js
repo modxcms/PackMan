@@ -3,7 +3,7 @@ TP.grid.Snippets = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'tp-grid-snippets'
-        ,url: TP.config.connector_url
+        ,url: MODx.config.connector_url
         ,baseParams: {
             action: 'snippet/getList'
         }
@@ -81,6 +81,7 @@ TP.window.AddSnippet = function(config) {
             ,id: 'tp-'+this.ident+'-snippet'
             ,allowBlank: false
             ,pageSize: 20
+            ,anchor: '100%'
             ,listeners: {
                 'select':{fn:this.selectSnippet,scope:this}
             }
@@ -91,7 +92,7 @@ TP.window.AddSnippet = function(config) {
             ,fieldLabel: _('packman.assets_path')
             ,description: _('packman.assets_path_desc')
             ,value: '{assets_path}components/mycomponent/'
-            ,width: 300
+            ,anchor: '100%'
         },{
             xtype: 'textfield'
             ,name: 'core_path'
@@ -99,7 +100,7 @@ TP.window.AddSnippet = function(config) {
             ,fieldLabel: _('packman.core_path')
             ,description: _('packman.core_path_desc')
             ,value: '{core_path}components/mycomponent/'
-            ,width: 300
+            ,anchor: '100%'
         }]
     });
     TP.window.AddSnippet.superclass.constructor.call(this,config);
@@ -147,13 +148,13 @@ TP.combo.Snippet = function(config) {
         ,valueField: 'id'
         ,fields: ['id','name']
         ,forceSelection: true
-        ,typeAhead: false
-        ,editable: false
+        ,typeAhead: true
+        ,editable: true
         ,allowBlank: false
         ,listWidth: 300
-        ,url: MODx.config.connector_url ? MODx.config.connector_url : MODx.config.connectors_url+'element/snippet.php'
+        ,url: MODx.config.connector_url
         ,baseParams: {
-            action: MODx.config.connector_url ? 'element/snippet/getList' : 'getList'
+            action: 'PackMan\\Processors\\Element\\Snippet\\GetList'
         }
     });
     TP.combo.Snippet.superclass.constructor.call(this,config);

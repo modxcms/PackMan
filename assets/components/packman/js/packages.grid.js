@@ -3,7 +3,7 @@ TP.grid.Packages = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'tp-grid-packages'
-        ,url: TP.config.connector_url
+        ,url: MODx.config.connector_url
         ,baseParams: {
             action: 'package/getList'
         }
@@ -38,7 +38,7 @@ Ext.extend(TP.grid.Packages,TP.grid.LocalGrid,{
     }
     ,addPackage: function(btn,e) {
         var r = {};
-        
+
         if (!this.windows.addPackage) {
             this.windows.addPackage = MODx.load({
                 xtype: 'tp-window-package-add'
@@ -73,6 +73,7 @@ TP.window.AddPackage = function(config) {
             ,hiddenName: 'package'
             ,id: 'tp-'+this.ident+'-package'
             ,allowBlank: false
+            ,anchor: '100%'
             ,pageSize: 20
         }]
     });
@@ -111,9 +112,9 @@ TP.combo.Package = function(config) {
         ,editable: false
         ,allowBlank: false
         ,listWidth: 300
-        ,url: MODx.config.connector_url ? MODx.config.connector_url : MODx.config.connectors_url+'workspace/packages.php'
+        ,url: MODx.config.connector_url
         ,baseParams: {
-            action: MODx.config.connector_url ? 'workspace/packages/getList' : 'getList'
+            action: 'MODX\\Revolution\\Processors\\Workspace\\Packages\\GetList'
         }
     });
     TP.combo.Package.superclass.constructor.call(this,config);

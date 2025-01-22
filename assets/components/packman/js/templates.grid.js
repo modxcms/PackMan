@@ -3,7 +3,7 @@ TP.grid.Templates = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'tp-grid-templates'
-        ,url: TP.config.connector_url
+        ,url: MODx.config.connector_url
         ,baseParams: {
             action: 'tv/getList'
         }
@@ -77,6 +77,7 @@ TP.window.AddTemplate = function(config) {
             ,id: 'tp-'+this.ident+'-template'
             ,allowBlank: false
             ,pageSize: 20
+            ,anchor: '100%'
             ,listeners: {
                 'select':{fn:this.selectTemplate,scope:this}
             }
@@ -86,7 +87,7 @@ TP.window.AddTemplate = function(config) {
             ,fieldLabel: _('packman.directory')
             ,description: _('packman.template_directory_desc')
             ,value: '{assets_path}templates/mytemplate/'
-            ,width: 300
+            ,anchor: '100%'
         }]
     });
     TP.window.AddTemplate.superclass.constructor.call(this,config);
@@ -131,13 +132,13 @@ TP.combo.Template = function(config) {
         ,valueField: 'id'
         ,fields: ['id','templatename']
         ,forceSelection: true
-        ,typeAhead: false
-        ,editable: false
+        ,typeAhead: true
+        ,editable: true
         ,allowBlank: false
         ,listWidth: 300
-        ,url: MODx.config.connector_url ? MODx.config.connector_url : MODx.config.connectors_url+'element/template.php'
+        ,url: MODx.config.connector_url
         ,baseParams: {
-            action: MODx.config.connector_url ? 'element/template//getList' : 'getList'
+            action: 'PackMan\\Processors\\Element\\Template\\GetList'
         }
     });
     TP.combo.Template.superclass.constructor.call(this,config);
