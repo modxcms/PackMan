@@ -3,6 +3,4 @@ config.core.php
 nbproject
 .svn
 .vscode
-_packages/*.*
-!_packages/.gitignore
-!_packages/*.zip
+_packages
